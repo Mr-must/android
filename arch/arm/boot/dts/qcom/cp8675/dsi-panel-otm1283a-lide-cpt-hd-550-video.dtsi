@@ -259,6 +259,7 @@
 		cm,mdss-livedisplay-ce-weak-value = <0x80>;
 		cm,mdss-livedisplay-ce-medium-value = <0x90>;
 		cm,mdss-livedisplay-ce-strong-value = <0xB0>;
+		cm,mdss-livedisplay-cabc-ce-value = <0x80>;
 		cm,mdss-livedisplay-post-cmd = [
 			05 01 00 00 00 00 02 29 00
 		];
