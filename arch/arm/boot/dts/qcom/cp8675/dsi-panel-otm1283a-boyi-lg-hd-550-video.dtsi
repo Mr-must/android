@@ -260,9 +260,6 @@
 		cm,mdss-livedisplay-cabc-ui-value = <0x01>;
 		cm,mdss-livedisplay-cabc-image-value = <0x02>;
 		cm,mdss-livedisplay-cabc-video-value = <0x03>;
-		cm,mdss-livedisplay-ce-weak-value = <0x80>;
-		cm,mdss-livedisplay-ce-medium-value = <0x90>;
-		cm,mdss-livedisplay-ce-strong-value = <0xB0>;
 		cm,mdss-livedisplay-cabc-ce-value = <0xB0>;
 		cm,mdss-livedisplay-post-cmd = [
 			05 01 00 00 00 00 02 29 00
