@@ -30,19 +30,13 @@ struct mdss_livedisplay_ctx {
 	uint8_t sre_weak_value;
 	uint8_t sre_medium_value;
 	uint8_t sre_strong_value;
-	uint8_t ce_weak_value;
-	uint8_t ce_medium_value;
-	uint8_t ce_strong_value;
+	uint8_t cabc_ce_value;
 	uint8_t aco_value;
 
 	const uint8_t *ce_off_cmds;
-	const uint8_t *ce_weak_cmds;
-	const uint8_t *ce_medium_cmds;
-	const uint8_t *ce_strong_cmds;
+	const uint8_t *ce_on_cmds;
 	unsigned int ce_off_cmds_len;
-	unsigned int ce_weak_cmds_len;
-	unsigned int ce_medium_cmds_len;
-	unsigned int ce_strong_cmds_len;
+	unsigned int ce_on_cmds_len;
 
 	const uint8_t *presets[MAX_PRESETS];
 	unsigned int presets_len[MAX_PRESETS];
@@ -56,8 +50,8 @@ struct mdss_livedisplay_ctx {
 	unsigned int preset;
 	unsigned int cabc_level;
 	unsigned int sre_level;
-	unsigned int ce_level;
 	bool aco_enabled;
+	bool ce_enabled;
 
 	unsigned int num_presets;
 	unsigned int caps;
@@ -91,19 +85,11 @@ enum {
 };
 
 enum {
-	CE_OFF,
-	CE_WEAK,
-	CE_MEDIUM,
-	CE_STRONG,
-	CE_MAX
-};
-
-enum {
 	MODE_CABC		= 0x01,
 	MODE_SRE		= 0x02,
 	MODE_AUTO_CONTRAST	= 0x04,
 	MODE_COLOR_ENHANCE	= 0x08,
-	MODE_COLOR_ENHANCE_CABC	= 0x10,
+	MODE_CABC_COLOR_ENHANCE = 0x10,
 	MODE_PRESET		= 0x20,
 	MODE_RGB		= 0x40,
 	MODE_UPDATE_ALL		= 0xFF,
@@ -115,10 +101,10 @@ int mdss_livedisplay_create_sysfs(struct msm_fb_data_type *mfd);
 
 static inline bool is_cabc_cmd(uint32_t value)
 {
-	return (value & MODE_CABC)
-			|| (value & MODE_SRE)
-			|| (value & MODE_AUTO_CONTRAST)
-			|| (value & MODE_COLOR_ENHANCE_CABC);
+	return (value & MODE_CABC) ||
+			(value & MODE_SRE) ||
+			(value & MODE_AUTO_CONTRAST) ||
+			(value & MODE_CABC_COLOR_ENHANCE);
 }
 
 static inline struct mdss_livedisplay_ctx* get_ctx(struct msm_fb_data_type *mfd)
